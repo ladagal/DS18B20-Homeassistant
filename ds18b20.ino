@@ -1,11 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ArduinoHA.h>
 #include "Secrets.h"
-
 #include <OneWire.h>
 #include <DallasTemperature.h>
-
-
 
 //-----DS1820-------------------
 const int oneWireBus = D7;     
@@ -18,8 +15,7 @@ WiFiClient client;
 HADevice device;
 HAMqtt mqtt(client, device, 20);
 
-HASensorNumber ds1820("Teplota_akvarium", HASensorNumber::PrecisionP1);
-
+HASensorNumber ds1820("DS18B20", HASensorNumber::PrecisionP1);
 
 void setup() {
 
@@ -52,10 +48,6 @@ void setup() {
     ds1820.setIcon("mdi:temperature-celsius");
     ds1820.setName("Teplota");
     ds1820.setUnitOfMeasurement("°C");
-
-
-
-
 }
 
 void loop() {
